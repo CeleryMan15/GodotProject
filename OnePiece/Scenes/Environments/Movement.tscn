@@ -1,0 +1,692 @@
+[gd_scene load_steps=65 format=3 uid="uid://b5pxfmjygra2o"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_1xu3s"]
+[ext_resource type="Texture2D" uid="uid://ciyws3q2sk7g8" path="res://Sprites/Characters/SkeletonBodyIdle.png" id="2_ryxo6"]
+[ext_resource type="Texture2D" uid="uid://cr77u3b4vixvl" path="res://Sprites/Characters/SkeletonBodyRun.png" id="3_tp5qi"]
+[ext_resource type="Texture2D" uid="uid://bfugt132rtwhw" path="res://Sprites/Characters/SkeletonLeftArmIdle.png" id="4_bf0ev"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Inventory.gd" id="4_ffip5"]
+[ext_resource type="Texture2D" uid="uid://dq5dt7p1loui8" path="res://Sprites/Characters/SkeletonLeftArmRun.png" id="4_i27il"]
+[ext_resource type="Texture2D" uid="uid://bic8s2kh3kjjf" path="res://Sprites/Characters/SkeletonRightArmRun.png" id="5_73pd3"]
+[ext_resource type="PackedScene" uid="uid://d3a87guiewgxm" path="res://Scenes/Prefabs/UI/InventorySlot.tscn" id="5_pwlyl"]
+[ext_resource type="PackedScene" uid="uid://cqcv3o8v24ae4" path="res://Scenes/Prefabs/UI/EquipmentSlot.tscn" id="6_38tx4"]
+[ext_resource type="Texture2D" uid="uid://c1q3vlext6oej" path="res://Sprites/Characters/SkeletonRightArmIdle.png" id="6_jtwhg"]
+[ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="6_kx7aq"]
+[ext_resource type="Script" path="res://Scripts/Inventory/EquipmentSlot.gd" id="8_vuhys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi4ui"]
+size = Vector2(15, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80p85"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m5lg"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37ti1"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5l6vh"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woo4l"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8pj7y"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k48pu"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82xyk"]
+atlas = ExtResource("2_ryxo6")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1dmd"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfw0f"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3myk"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8kaf"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmf1j"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6u8a"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f7x1"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah5vp"]
+atlas = ExtResource("3_tp5qi")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8iv2e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80p85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m5lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37ti1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5l6vh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woo4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8pj7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k48pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82xyk")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1dmd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfw0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3myk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8kaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmf1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6u8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4f7x1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah5vp")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frcno"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh5pm"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gpo3"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byf0i"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhw5c"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uny1k"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjplb"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7141"]
+atlas = ExtResource("4_bf0ev")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca2ss"]
+atlas = ExtResource("4_i27il")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5om88"]
+atlas = ExtResource("4_i27il")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45neg"]
+atlas = ExtResource("4_i27il")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phbcg"]
+atlas = ExtResource("4_i27il")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xa7u"]
+atlas = ExtResource("4_i27il")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb81t"]
+atlas = ExtResource("4_i27il")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbh3b"]
+atlas = ExtResource("4_i27il")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew465"]
+atlas = ExtResource("4_i27il")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ywwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frcno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qh5pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gpo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byf0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhw5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uny1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjplb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7141")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca2ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5om88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45neg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phbcg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xa7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb81t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbh3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew465")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ad8"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_et7at"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fowc"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjr7x"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axck7"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ho847"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5qoc"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exe3b"]
+atlas = ExtResource("6_jtwhg")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31byl"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqqke"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2wfd"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dojyb"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvdpq"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stfx3"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nq23"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3xot"]
+atlas = ExtResource("5_73pd3")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_20k7v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6ad8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_et7at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fowc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjr7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axck7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ho847")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5qoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exe3b")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31byl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqqke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2wfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dojyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvdpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stfx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nq23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3xot")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+scale = Vector2(5, 5)
+script = ExtResource("1_1xu3s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_pi4ui")
+
+[node name="Animation" type="Node2D" parent="Player"]
+
+[node name="BodyAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Animation"]
+sprite_frames = SubResource("SpriteFrames_8iv2e")
+animation = &"Idle"
+
+[node name="LeftArmAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Animation"]
+sprite_frames = SubResource("SpriteFrames_6ywwr")
+animation = &"Idle"
+
+[node name="RightArmAnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Animation"]
+sprite_frames = SubResource("SpriteFrames_20k7v")
+animation = &"Idle"
+
+[node name="Equipment" type="Node2D" parent="Player"]
+
+[node name="CoatAnimation" type="AnimatedSprite2D" parent="Player/Equipment"]
+animation = &""
+
+[node name="LeftArmAnimation" type="AnimatedSprite2D" parent="Player/Equipment"]
+
+[node name="RightArmAnimation" type="AnimatedSprite2D" parent="Player/Equipment"]
+
+[node name="Inventory" type="Node" parent="Player"]
+script = ExtResource("4_ffip5")
+
+[node name="Window" type="Panel" parent="Player/Inventory"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlotContainer" type="GridContainer" parent="Player/Inventory/Window"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -130.0
+offset_right = 130.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 6
+
+[node name="Slot" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot2" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot3" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot4" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot5" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot6" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot7" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot8" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot9" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot10" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot11" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot12" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot13" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot14" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot15" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot16" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot17" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot18" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot19" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot20" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot21" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot22" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot23" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot24" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot25" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot26" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot27" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot28" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot29" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot30" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot31" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot32" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot33" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot34" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot35" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="Slot36" parent="Player/Inventory/Window/SlotContainer" instance=ExtResource("5_pwlyl")]
+layout_mode = 2
+script = ExtResource("6_kx7aq")
+
+[node name="EquipmentWindow" type="Panel" parent="Player/Inventory"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 149.0
+offset_top = -150.0
+offset_right = 299.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997461, 1)
+
+[node name="HeadSlot" parent="Player/Inventory/EquipmentWindow" instance=ExtResource("6_38tx4")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 6.0
+offset_right = 20.0
+offset_bottom = 46.0
+grow_horizontal = 2
+script = ExtResource("8_vuhys")
+
+[node name="CoatSlot" parent="Player/Inventory/EquipmentWindow" instance=ExtResource("6_38tx4")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.86
+offset_top = 51.0
+offset_right = 20.14
+offset_bottom = 91.0
+grow_horizontal = 2
+script = ExtResource("8_vuhys")
+
+[node name="LegSlot" parent="Player/Inventory/EquipmentWindow" instance=ExtResource("6_38tx4")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.86
+offset_top = 96.0
+offset_right = 20.14
+offset_bottom = 136.0
+grow_horizontal = 2
+script = ExtResource("8_vuhys")
+
+[node name="LeftWeaponSlot" parent="Player/Inventory/EquipmentWindow" instance=ExtResource("6_38tx4")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.9745
+offset_top = 51.0
+offset_right = -24.9745
+offset_bottom = 91.0
+grow_horizontal = 2
+script = ExtResource("8_vuhys")
+
+[node name="RightWeaponSlot" parent="Player/Inventory/EquipmentWindow" instance=ExtResource("6_38tx4")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 25.2545
+offset_top = 51.0
+offset_right = 65.2545
+offset_bottom = 91.0
+grow_horizontal = 2
+script = ExtResource("8_vuhys")
+
+[node name="InfoText" type="Label" parent="Player/Inventory/EquipmentWindow"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -130.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "funny description"
+horizontal_alignment = 1
+autowrap_mode = 1
